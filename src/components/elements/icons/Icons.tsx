@@ -1,6 +1,9 @@
 import React from 'react';
 
-export const PreviewIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
+interface IconProps{
+  props?:React.SVGProps<SVGSVGElement>;
+}
+export const PreviewIcon: React.FC<IconProps> = (props) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="16"
@@ -18,7 +21,7 @@ export const PreviewIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
   </svg>
 );
 
-export const ExportIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
+export const ExportIcon: React.FC<IconProps> = (props) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="16"

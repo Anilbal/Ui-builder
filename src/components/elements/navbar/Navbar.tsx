@@ -6,14 +6,21 @@ import {
   PreviewButton,
   ExportButton,
 } from './Navbar.styles';
+import { PreviewIcon, ExportIcon } from '../icons/Icons';
 
 const Navbar: React.FC = () => {
   return (
     <NavbarContainer>
       <Logo>UI Builder</Logo>
       <ButtonGroup>
-        <PreviewButton>Preview</PreviewButton>
-        <ExportButton>Export</ExportButton>
+        <PreviewButton>
+          <PreviewIcon />
+          Preview
+        </PreviewButton>
+        <ExportButton>
+          <ExportIcon />
+          Export
+        </ExportButton>
       </ButtonGroup>
     </NavbarContainer>
   );
