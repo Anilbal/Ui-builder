@@ -59,7 +59,7 @@ const Navbar: React.FC = () => {
 
   return (
     <NavbarContainer>
-      <Logo>UI Builder</Logo>
+      <Logo>ui builder</Logo>
       <ButtonGroup>
         <PreviewButton>
           <PreviewIcon />
