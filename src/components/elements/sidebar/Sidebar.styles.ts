@@ -10,10 +10,15 @@ export const SidebarContainer = styled.aside`
   flex-direction: column;
   gap: 0.5rem;
   overflow-y: auto;
+  position: sticky;
+  top: 64px;
+  align-self: flex-start;
 
   @media (max-width: 768px) {
     width: 100%;
     height: auto;
+    position: relative;
+    top: 0;
     border-right: none;
     border-bottom: 1px solid #e5e7eb;
   }

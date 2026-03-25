@@ -4,17 +4,20 @@ export const NavbarContainer = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
+  padding: 0 2rem;
+  height: 64px;
   background-color: #ffffff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   position: sticky;
   top: 0;
   z-index: 1000;
 
   @media (max-width: 768px) {
-    padding: 0.75rem 1rem;
+    padding: 0 1rem;
+    height: auto;
+    min-height: 64px;
     flex-direction: column;
-    gap: 1rem;
+    padding-bottom: 1rem;
   }
 `;
 
