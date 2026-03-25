@@ -5,8 +5,8 @@ export interface IconProps extends React.SVGProps<SVGSVGElement> {}
 export const PreviewIcon: React.FC<IconProps> = (props) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width="16"
-    height="16"
+    width="18"
+    height="18"
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
@@ -23,8 +23,8 @@ export const PreviewIcon: React.FC<IconProps> = (props) => (
 export const ExportIcon: React.FC<IconProps> = (props) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width="16"
-    height="16"
+    width="18"
+    height="18"
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
@@ -52,9 +52,11 @@ export const NavbarSectionIcon: React.FC<IconProps> = (props) => (
     strokeLinejoin="round"
     {...props}
   >
-    <rect width="20" height="6" x="2" y="3" rx="1" />
-    <path d="M6 6h.01" />
-    <path d="M10 6h.01" />
+    <rect width="20" height="16" x="2" y="4" rx="2" />
+    <path d="M2 9h20" />
+    <circle cx="6" cy="6.5" r=".5" fill="currentColor" />
+    <circle cx="8" cy="6.5" r=".5" fill="currentColor" />
+    <circle cx="10" cy="6.5" r=".5" fill="currentColor" />
   </svg>
 );
 
@@ -71,10 +73,9 @@ export const HeroSectionIcon: React.FC<IconProps> = (props) => (
     strokeLinejoin="round"
     {...props}
   >
-    <rect width="20" height="12" x="2" y="6" rx="2" />
-    <path d="M2 12h20" />
-    <path d="M7 18v-2" />
-    <path d="M17 18v-2" />
+    <rect width="20" height="16" x="2" y="4" rx="2" />
+    <path d="m2 14 3-3 3 3 5-5 7 7" />
+    <circle cx="8.5" cy="8.5" r="1.5" />
   </svg>
 );
 
@@ -91,10 +92,11 @@ export const FeaturesSectionIcon: React.FC<IconProps> = (props) => (
     strokeLinejoin="round"
     {...props}
   >
-    <path d="M3 10h18" />
-    <path d="M3 14h18" />
-    <path d="M3 18h18" />
-    <path d="M7 6h10" />
+    <path d="M12 3v19" />
+    <path d="M5 8h14" />
+    <path d="M15 4.5 19 8l-4 3.5" />
+    <path d="m9 20-4-3.5 4-3.5" />
+    <rect width="20" height="20" x="2" y="2" rx="2" />
   </svg>
 );
 
@@ -111,9 +113,8 @@ export const CTASectionIcon: React.FC<IconProps> = (props) => (
     strokeLinejoin="round"
     {...props}
   >
-    <path d="m5 14 7-3 7 3V5a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2Z" />
-    <path d="M12 19v2" />
-    <path d="M9 21h6" />
+    <path d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5" />
+    <circle cx="12" cy="12" r="10" stroke-dasharray="2 4" />
   </svg>
 );
 
@@ -130,8 +131,8 @@ export const FooterSectionIcon: React.FC<IconProps> = (props) => (
     strokeLinejoin="round"
     {...props}
   >
-    <rect width="20" height="6" x="2" y="15" rx="1" />
-    <path d="M6 18h.01" />
-    <path d="M10 18h.01" />
+    <rect width="20" height="16" x="2" y="4" rx="2" />
+    <path d="M2 15h20" />
+    <path d="M7 18h10" />
   </svg>
 );
