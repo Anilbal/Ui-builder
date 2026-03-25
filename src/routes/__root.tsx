@@ -2,6 +2,7 @@ import { createRootRoute, Outlet } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 import Navbar from "../components/elements/navbar/Navbar";
 import Sidebar from "../components/elements/sidebar/Sidebar";
+import RightSidebar from "../components/elements/sidebar/RightSidebar";
 import styled from "styled-components";
 
 const AppContainer = styled.div`
@@ -23,6 +24,7 @@ const ContentArea = styled.main`
   flex: 1;
   padding: 2rem;
   background-color: #f3f4f6;
+  overflow-y: auto;
 `;
 
 const RootLayout = () => (
@@ -33,6 +35,7 @@ const RootLayout = () => (
       <ContentArea>
         <Outlet />
       </ContentArea>
+      <RightSidebar />
     </MainContent>
     <TanStackRouterDevtools />
   </AppContainer>
