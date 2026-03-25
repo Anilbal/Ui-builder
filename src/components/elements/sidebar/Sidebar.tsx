@@ -23,7 +23,7 @@ const Sidebar: React.FC = () => {
 
   return (
     <SidebarContainer>
-      <SidebarTitle>Sections</SidebarTitle>
+      <SidebarTitle>Components</SidebarTitle>
       {sections.map((section) => (
         <SidebarItem key={section.name}>
           {section.icon}

@@ -46,9 +46,9 @@ export const SidebarItem = styled.div`
 
 export const SidebarTitle = styled.h3`
   font-size: 0.75rem;
-  font-weight: 600;
+  font-weight: 700;
   text-transform: uppercase;
-  color: #9ca3af;
+  color: #72767dff;
   margin-bottom: 0.5rem;
   padding: 0 1rem;
 `;
