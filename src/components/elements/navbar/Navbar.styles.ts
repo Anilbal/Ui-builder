@@ -72,6 +72,7 @@ export const PreviewButton = styled(Button)`
 export const ExportButton = styled(Button)`
   background-color: #000000; /* black */
   color: #ffffff;
+  position: relative;
 
   &:hover {
     background-color: #1a1a1a;
@@ -81,4 +82,49 @@ export const ExportButton = styled(Button)`
   &:active {
     transform: translateY(0);
   }
+`;
+
+export const DropdownContainer = styled.div`
+  position: relative;
+`;
+
+export const DropdownMenu = styled.div`
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  width: 240px;
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  z-index: 1001;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+`;
+
+export const DropdownItem = styled.div`
+  padding: 0.75rem 1rem;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+
+  &:hover {
+    background-color: #f3f4f6;
+  }
+`;
+
+export const DropdownItemTitle = styled.span`
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #111827;
+`;
+
+export const DropdownItemDesc = styled.span`
+  font-size: 0.75rem;
+  color: #6b7280;
 `;
