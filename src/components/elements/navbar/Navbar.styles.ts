@@ -110,12 +110,35 @@ export const DropdownItem = styled.div`
   cursor: pointer;
   transition: all 0.2s ease;
   display: flex;
-  flex-direction: column;
-  gap: 0.125rem;
+  align-items: flex-start;
+  gap: 0.75rem;
 
   &:hover {
     background-color: #f3f4f6;
   }
+`;
+
+export const DropdownItemIcon = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.375rem;
+  background-color: #f9fafb;
+  border-radius: 0.375rem;
+  color: #374151;
+  border: 1px solid #e5e7eb;
+
+  ${DropdownItem}:hover & {
+    background-color: #ffffff;
+    color: #3b82f6;
+    border-color: #3b82f6;
+  }
+`;
+
+export const DropdownItemContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
 `;
 
 export const DropdownItemTitle = styled.span`
