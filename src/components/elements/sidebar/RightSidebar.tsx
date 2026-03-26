@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   RightSidebarContainer,
   SidebarHeader,
@@ -11,9 +11,27 @@ import {
   Input,
   IconButton,
   Footer,
-} from './RightSidebar.styles';
-import { TextIcon, ListIcon, TrashIcon, PlusIcon } from '../icons/Icons';
-import { useBuilder } from '../../../contexts/BuilderContext';
+} from "./RightSidebar.styles";
+import { TextIcon, ListIcon, TrashIcon, PlusIcon } from "../icons/Icons";
+import { useBuilder } from "../../../contexts/BuilderContext";
+import styled from "styled-components";
+
+const EmptyStateWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 2rem;
+  text-align: center;
+  color: #a1a1aa;
+`;
+
+const EmptyText = styled.p`
+  font-size: 0.875rem;
+  line-height: 1.5;
+  max-width: 200px;
+`;
 
 const RightSidebar: React.FC = () => {
   const { activeComponent, navbarData, setNavbarData } = useBuilder();
@@ -22,58 +40,57 @@ const RightSidebar: React.FC = () => {
     return (
       <RightSidebarContainer>
         <SidebarHeader>
-          <HeaderTitle>Properties</HeaderTitle>
+          <HeaderTitle>PROPERTIES</HeaderTitle>
         </SidebarHeader>
-        <div style={{ padding: '2rem', textAlign: 'center', color: '#6b7280' }}>
-          Select a component to edit its properties
-        </div>
+        <EmptyStateWrapper>
+          <EmptyText>
+            Select a component from the sidebar to edit its properties
+          </EmptyText>
+        </EmptyStateWrapper>
       </RightSidebarContainer>
     );
   }
 
   const handleBrandChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setNavbarData(prev => ({ ...prev, brand: e.target.value }));
+    setNavbarData((prev) => ({ ...prev, brand: e.target.value }));
   };
 
   const handleLinkChange = (index: number, value: string) => {
     const newLinks = [...navbarData.links];
     newLinks[index] = { ...newLinks[index], label: value };
-    setNavbarData(prev => ({ ...prev, links: newLinks }));
+    setNavbarData((prev) => ({ ...prev, links: newLinks }));
   };
 
   const deleteLink = (index: number) => {
     const newLinks = navbarData.links.filter((_, i) => i !== index);
-    setNavbarData(prev => ({ ...prev, links: newLinks }));
+    setNavbarData((prev) => ({ ...prev, links: newLinks }));
   };
 
   const addLink = () => {
-    setNavbarData(prev => ({
+    setNavbarData((prev) => ({
       ...prev,
-      links: [...prev.links, { label: 'New Link', href: '#' }]
+      links: [...prev.links, { label: "New Link", href: "#" }],
     }));
   };
 
   const handleCTAChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setNavbarData(prev => ({ ...prev, ctaText: e.target.value }));
+    setNavbarData((prev) => ({ ...prev, ctaText: e.target.value }));
   };
 
   return (
     <RightSidebarContainer>
       <SidebarHeader>
-        <HeaderTitle>Properties</HeaderTitle>
+        <HeaderTitle>PROPERTIES</HeaderTitle>
         <Badge>{activeComponent}</Badge>
       </SidebarHeader>
 
-      {activeComponent === 'Navbar' && (
+      {activeComponent === "Navbar" && (
         <ScrollArea>
           <PropertySection>
             <SectionLabel>
               <TextIcon /> Brand Name
             </SectionLabel>
-            <Input 
-              value={navbarData.brand} 
-              onChange={handleBrandChange}
-            />
+            <Input value={navbarData.brand} onChange={handleBrandChange} />
           </PropertySection>
 
           <PropertySection>
@@ -82,8 +99,8 @@ const RightSidebar: React.FC = () => {
             </SectionLabel>
             {navbarData.links.map((link, index) => (
               <InputWrapper key={index}>
-                <Input 
-                  value={link.label} 
+                <Input
+                  value={link.label}
                   onChange={(e) => handleLinkChange(index, e.target.value)}
                 />
                 <IconButton onClick={() => deleteLink(index)}>
@@ -91,20 +108,20 @@ const RightSidebar: React.FC = () => {
                 </IconButton>
               </InputWrapper>
             ))}
-            <div 
-              style={{ 
-                display: 'flex', 
-                alignItems: 'center', 
-                gap: '0.5rem', 
-                color: '#3b82f6', 
-                fontSize: '0.875rem',
-                cursor: 'pointer',
-                marginTop: '0.5rem',
-                padding: '0.25rem'
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "0.5rem",
+                color: "#3b82f6",
+                fontSize: "0.875rem",
+                cursor: "pointer",
+                marginTop: "0.5rem",
+                padding: "0.25rem",
               }}
               onClick={addLink}
             >
-              <PlusIcon style={{ width: '14px', height: '14px' }} />
+              <PlusIcon style={{ width: "14px", height: "14px" }} />
               Add Link
             </div>
           </PropertySection>
@@ -113,16 +130,13 @@ const RightSidebar: React.FC = () => {
             <SectionLabel>
               <TextIcon /> CTA Button Text
             </SectionLabel>
-            <Input 
-              value={navbarData.ctaText} 
-              onChange={handleCTAChange}
-            />
+            <Input value={navbarData.ctaText} onChange={handleCTAChange} />
           </PropertySection>
         </ScrollArea>
       )}
 
-      {activeComponent !== 'Navbar' && (
-        <div style={{ padding: '2rem', textAlign: 'center', color: '#6b7280' }}>
+      {activeComponent !== "Navbar" && (
+        <div style={{ padding: "2rem", textAlign: "center", color: "#6b7280" }}>
           Properties for {activeComponent} coming soon...
         </div>
       )}
