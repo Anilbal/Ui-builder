@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import JSZip from 'jszip';
 import {
   NavbarContainer,
   Logo,
@@ -17,7 +18,7 @@ import {
   PreviewIcon,
   ExportIcon,
   ChevronDownIcon,
-  NextJsIcon,
+  // NextJsIcon,
   ReactIcon,
   TailwindIcon,
 } from '../icons/Icons';
@@ -35,6 +36,115 @@ const Navbar: React.FC = () => {
     window.open('/preview', '_blank');
   };
 
+  const handleExportReact = async () => {
+    const zip = new JSZip();
+    const componentsFolder = zip.folder('components');
+    const navbarFolder = componentsFolder?.folder('navbar');
+
+    const stylesContent = `import styled from 'styled-components';
+
+export const NavbarWrapper = styled.nav\`
+  width: 100%;
+  background-color: #0a0a0a;
+  padding: 1.25rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  position: relative;
+\`;
+
+export const Brand = styled.div\`
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #ffffff;
+\`;
+
+export const NavLinks = styled.div\`
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+
+  @media (max-width: 1024px) {
+    display: none;
+  }
+\`;
+
+export const NavLink = styled.a\`
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #a1a1aa;
+  text-decoration: none;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: #ffffff;
+  }
+\`;
+
+export const ActionButton = styled.button\`
+  background-color: #ffffff;
+  color: #000000;
+  padding: 0.625rem 1.25rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+
+  &:hover {
+    opacity: 0.9;
+  }
+\`;
+`;
+
+    const componentContent = `import React from 'react';
+import {
+  NavbarWrapper,
+  Brand,
+  NavLinks,
+  NavLink,
+  ActionButton,
+} from './Navbar.styles';
+
+const Navbar: React.FC = () => {
+  return (
+    <NavbarWrapper>
+      <Brand>${navbarData.brand}</Brand>
+      <NavLinks>
+        ${navbarData.links
+          .map(
+            (link) => `
+        <NavLink href="${link.href}">
+          ${link.label}
+        </NavLink>`
+          )
+          .join('')}
+      </NavLinks>
+      <ActionButton>${navbarData.ctaText}</ActionButton>
+    </NavbarWrapper>
+  );
+};
+
+export default Navbar;
+`;
+
+    navbarFolder?.file('Navbar.styles.ts', stylesContent);
+    navbarFolder?.file('Navbar.tsx', componentContent);
+
+    const blob = await zip.generateAsync({ type: 'blob' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'navbar-component.zip';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+    setIsDropdownOpen(false);
+  };
+
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
@@ -47,15 +157,16 @@ const Navbar: React.FC = () => {
   }, []);
 
   const exportOptions = [
-    {
-      title: 'Next.js',
-      description: 'Production-ready React framework with SSR.',
-      icon: <NextJsIcon />,
-    },
+    // {
+    //   title: 'Next.js',
+    //   description: 'Production-ready React framework with SSR.',
+    //   icon: <NextJsIcon />,
+    // },
     {
       title: 'React',
       description: 'Clean Vite-based React starter project.',
       icon: <ReactIcon />,
+      onClick: handleExportReact,
     },
     {
       title: 'Tailwind CSS',
@@ -81,7 +192,11 @@ const Navbar: React.FC = () => {
           {isDropdownOpen && (
             <DropdownMenu>
               {exportOptions.map((option) => (
-                <DropdownItem key={option.title}>
+                <DropdownItem 
+                  key={option.title} 
+                  onClick={option.onClick}
+                  style={{ cursor: (option as any).onClick ? 'pointer' : 'default' }}
+                >
                   <DropdownItemIcon>{option.icon}</DropdownItemIcon>
                   <DropdownItemContent>
                     <DropdownItemTitle>{option.title}</DropdownItemTitle>
