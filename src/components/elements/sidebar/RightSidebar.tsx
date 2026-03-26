@@ -140,6 +140,7 @@ const RightSidebar: React.FC = () => {
                   placeholder="https://example.com/logo.png" 
                   value={navbarData.logoUrl} 
                   onChange={handleLogoUrlChange} 
+                  style={{width:"100%"}}
                 />
               </div>
             )}
