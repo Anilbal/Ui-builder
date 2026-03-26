@@ -9,19 +9,26 @@ import {
 import { useBuilder } from '../../../contexts/BuilderContext';
 
 const NavbarSection: React.FC = () => {
-  const { activeComponent } = useBuilder();
+  const { activeComponent, setActiveComponent, navbarData } = useBuilder();
   const isActive = activeComponent === 'Navbar';
 
   return (
-    <NavbarWrapper isActive={isActive}>
-      <Brand>Brand</Brand>
+    <NavbarWrapper 
+      isActive={isActive} 
+      onClick={(e) => {
+        e.stopPropagation();
+        setActiveComponent('Navbar');
+      }}
+    >
+      <Brand>{navbarData.brand}</Brand>
       <NavLinks>
-        <NavLink href="#">Home</NavLink>
-        <NavLink href="#">Features</NavLink>
-        <NavLink href="#">Pricing</NavLink>
-        <NavLink href="#">Contact</NavLink>
+        {navbarData.links.map((link, index) => (
+          <NavLink key={index} href={link.href}>
+            {link.label}
+          </NavLink>
+        ))}
       </NavLinks>
-      <ActionButton>Get Started</ActionButton>
+      <ActionButton>{navbarData.ctaText}</ActionButton>
     </NavbarWrapper>
   );
 };
