@@ -30,23 +30,20 @@ export const SidebarItem = styled.div<{ isActive?: boolean }>`
   gap: 0.75rem;
   padding: 0.75rem 1rem;
   border-radius: 0.5rem;
-  color: ${props => props.isActive ? '#111827' : '#374151'};
-  background-color: ${props => props.isActive ? '#f3f4f6' : 'transparent'};
+  color: ${(props) => (props.isActive ? "#ffffff" : "#374151")};
+  background-color: ${(props) => (props.isActive ? "#1f2937" : "transparent")};
   font-weight: 500;
   cursor: pointer;
   transition: all 0.2s ease;
+  border: 1px solid transparent;
 
   &:hover {
-    background-color: #f3f4f6;
-    color: #111827;
+    border: 1px solid #a1a5adff;
+    // color: #111827;
   }
 
   svg {
-    color: ${props => props.isActive ? '#3b82f6' : '#6b7280'};
-  }
-
-  &:hover svg {
-    color: #3b82f6;
+    color: ${(props) => (props.isActive ? "#ffffff" : "#6b7280")};
   }
 `;
 
