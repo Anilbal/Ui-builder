@@ -4,6 +4,7 @@ import Navbar from "../components/elements/navbar/Navbar";
 import Sidebar from "../components/elements/sidebar/Sidebar";
 import RightSidebar from "../components/elements/sidebar/RightSidebar";
 import styled from "styled-components";
+import { BuilderProvider } from "../contexts/BuilderContext";
 
 const AppContainer = styled.div`
   display: flex;
@@ -28,17 +29,19 @@ const ContentArea = styled.main`
 `;
 
 const RootLayout = () => (
-  <AppContainer>
-    <Navbar />
-    <MainContent>
-      <Sidebar />
-      <ContentArea>
-        <Outlet />
-      </ContentArea>
-      <RightSidebar />
-    </MainContent>
-    <TanStackRouterDevtools />
-  </AppContainer>
+  <BuilderProvider>
+    <AppContainer>
+      <Navbar />
+      <MainContent>
+        <Sidebar />
+        <ContentArea>
+          <Outlet />
+        </ContentArea>
+        <RightSidebar />
+      </MainContent>
+      <TanStackRouterDevtools />
+    </AppContainer>
+  </BuilderProvider>
 );
 
 export const Route = createRootRoute({ component: RootLayout });

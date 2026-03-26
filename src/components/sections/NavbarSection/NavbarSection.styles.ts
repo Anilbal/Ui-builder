@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-export const NavbarWrapper = styled.div`
+export const NavbarWrapper = styled.div<{ isActive?: boolean }>`
   width: 100%;
   background-color: #0a0a0a;
   padding: 1.25rem 2rem;
@@ -8,6 +8,26 @@ export const NavbarWrapper = styled.div`
   align-items: center;
   justify-content: space-between;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  position: relative;
+  transition: all 0.2s ease;
+
+  ${props => props.isActive && css`
+    outline: 2px solid #3b82f6;
+    outline-offset: -2px;
+
+    &::before {
+      content: 'Navbar';
+      position: absolute;
+      top: -24px;
+      left: 0;
+      background-color: #3b82f6;
+      color: white;
+      padding: 2px 8px;
+      font-size: 12px;
+      font-weight: 600;
+      border-radius: 4px 4px 0 0;
+    }
+  `}
 `;
 
 export const Brand = styled.div`

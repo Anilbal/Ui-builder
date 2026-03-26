@@ -11,8 +11,10 @@ import {
   CTASectionIcon,
   FooterSectionIcon,
 } from '../icons/Icons';
+import { useBuilder } from '../../../contexts/BuilderContext';
 
 const Sidebar: React.FC = () => {
+  const { activeComponent, setActiveComponent } = useBuilder();
   const sections = [
     { name: 'Navbar', icon: <NavbarSectionIcon /> },
     { name: 'Hero', icon: <HeroSectionIcon /> },
@@ -25,7 +27,11 @@ const Sidebar: React.FC = () => {
     <SidebarContainer>
       <SidebarTitle>Components</SidebarTitle>
       {sections.map((section) => (
-        <SidebarItem key={section.name}>
+        <SidebarItem
+          key={section.name}
+          isActive={activeComponent === section.name}
+          onClick={() => setActiveComponent(section.name)}
+        >
           {section.icon}
           {section.name}
         </SidebarItem>

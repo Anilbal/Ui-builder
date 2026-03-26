@@ -24,13 +24,14 @@ export const SidebarContainer = styled.aside`
   }
 `;
 
-export const SidebarItem = styled.div`
+export const SidebarItem = styled.div<{ isActive?: boolean }>`
   display: flex;
   align-items: center;
   gap: 0.75rem;
   padding: 0.75rem 1rem;
   border-radius: 0.5rem;
-  color: #374151;
+  color: ${props => props.isActive ? '#111827' : '#374151'};
+  background-color: ${props => props.isActive ? '#f3f4f6' : 'transparent'};
   font-weight: 500;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -41,7 +42,7 @@ export const SidebarItem = styled.div`
   }
 
   svg {
-    color: #6b7280;
+    color: ${props => props.isActive ? '#3b82f6' : '#6b7280'};
   }
 
   &:hover svg {

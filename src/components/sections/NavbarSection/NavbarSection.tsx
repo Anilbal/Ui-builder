@@ -6,10 +6,14 @@ import {
   NavLink,
   ActionButton,
 } from './NavbarSection.styles';
+import { useBuilder } from '../../../contexts/BuilderContext';
 
 const NavbarSection: React.FC = () => {
+  const { activeComponent } = useBuilder();
+  const isActive = activeComponent === 'Navbar';
+
   return (
-    <NavbarWrapper>
+    <NavbarWrapper isActive={isActive}>
       <Brand>Brand</Brand>
       <NavLinks>
         <NavLink href="#">Home</NavLink>
