@@ -34,6 +34,15 @@ export const Brand = styled.div`
   font-size: 1.25rem;
   font-weight: 800;
   color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+`;
+
+export const Logo = styled.img`
+  height: 2rem;
+  width: auto;
+  object-fit: contain;
 `;
 
 export const NavLinks = styled.div`

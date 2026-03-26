@@ -6,6 +6,8 @@ interface NavLink {
 }
 
 interface NavbarData {
+  showLogo: any;
+  logoUrl: any;
   brand: string;
   links: NavLink[];
   ctaText: string;

@@ -33,6 +33,35 @@ const EmptyText = styled.p`
   max-width: 200px;
 `;
 
+const ToggleContainer = styled.label`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  margin-bottom: 0.5rem;
+`;
+
+const ToggleSwitch = styled.div<{ active: boolean }>`
+  width: 36px;
+  height: 20px;
+  background-color: ${props => props.active ? '#3b82f6' : '#3f3f46'};
+  border-radius: 10px;
+  position: relative;
+  transition: background-color 0.2s;
+
+  &::after {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background-color: white;
+    border-radius: 50%;
+    top: 2px;
+    left: ${props => props.active ? '18px' : '2px'};
+    transition: left 0.2s;
+  }
+`;
+
 const RightSidebar: React.FC = () => {
   const { activeComponent, navbarData, setNavbarData } = useBuilder();
 
@@ -50,6 +79,14 @@ const RightSidebar: React.FC = () => {
       </RightSidebarContainer>
     );
   }
+
+  const handleToggleLogo = () => {
+    setNavbarData((prev) => ({ ...prev, showLogo: !prev.showLogo }));
+  };
+
+  const handleLogoUrlChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setNavbarData((prev) => ({ ...prev, logoUrl: e.target.value }));
+  };
 
   const handleBrandChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNavbarData((prev) => ({ ...prev, brand: e.target.value }));
@@ -86,6 +123,28 @@ const RightSidebar: React.FC = () => {
 
       {activeComponent === "Navbar" && (
         <ScrollArea>
+          <PropertySection>
+            <ToggleContainer onClick={handleToggleLogo}>
+              <SectionLabel style={{ margin: 0 }}>
+                Logo Image
+              </SectionLabel>
+              <ToggleSwitch active={navbarData.showLogo} />
+            </ToggleContainer>
+            
+            {navbarData.showLogo && (
+              <div style={{ marginTop: '0.5rem' }}>
+                <SectionLabel style={{ fontSize: '0.75rem', opacity: 0.7 }}>
+                  Image URL
+                </SectionLabel>
+                <Input 
+                  placeholder="https://example.com/logo.png" 
+                  value={navbarData.logoUrl} 
+                  onChange={handleLogoUrlChange} 
+                />
+              </div>
+            )}
+          </PropertySection>
+
           <PropertySection>
             <SectionLabel>
               <TextIcon /> Brand Name

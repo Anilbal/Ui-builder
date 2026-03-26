@@ -2,6 +2,7 @@ import React from 'react';
 import {
   NavbarWrapper,
   Brand,
+  Logo,
   NavLinks,
   NavLink,
   ActionButton,
@@ -20,7 +21,12 @@ const NavbarSection: React.FC = () => {
         setActiveComponent('Navbar');
       }}
     >
-      <Brand>{navbarData.brand}</Brand>
+      <Brand>
+        {navbarData.showLogo && navbarData.logoUrl && (
+          <Logo src={navbarData.logoUrl} alt="Logo" />
+        )}
+        {navbarData.brand}
+      </Brand>
       <NavLinks>
         {navbarData.links.map((link, index) => (
           <NavLink key={index} href={link.href}>
