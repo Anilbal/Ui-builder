@@ -21,12 +21,19 @@ import {
   ReactIcon,
   TailwindIcon,
 } from '../icons/Icons';
+import { useBuilder } from '../../../contexts/BuilderContext';
 
 const Navbar: React.FC = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const { navbarData } = useBuilder();
 
   const toggleDropdown = () => setIsDropdownOpen(!isDropdownOpen);
+
+  const handlePreview = () => {
+    localStorage.setItem('navbarPreviewData', JSON.stringify(navbarData));
+    window.open('/preview', '_blank');
+  };
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -61,7 +68,7 @@ const Navbar: React.FC = () => {
     <NavbarContainer>
       <Logo>ui builder</Logo>
       <ButtonGroup>
-        <PreviewButton>
+        <PreviewButton onClick={handlePreview}>
           <PreviewIcon />
           Preview
         </PreviewButton>

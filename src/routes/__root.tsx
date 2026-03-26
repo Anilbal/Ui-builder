@@ -1,4 +1,4 @@
-import { createRootRoute, Outlet } from "@tanstack/react-router";
+import { createRootRoute, Outlet, useLocation } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 import Navbar from "../components/elements/navbar/Navbar";
 import Sidebar from "../components/elements/sidebar/Sidebar";
@@ -21,27 +21,40 @@ const MainContent = styled.div`
   }
 `;
 
-const ContentArea = styled.main`
+const ContentArea = styled.main<{ isPreview?: boolean }>`
   flex: 1;
-  padding: 2rem;
-  background-color: #f3f4f6;
+  padding: ${props => props.isPreview ? '0' : '2rem'};
+  background-color: ${props => props.isPreview ? 'white' : '#f3f4f6'};
   overflow-y: auto;
 `;
 
-const RootLayout = () => (
-  <BuilderProvider>
-    <AppContainer>
-      <Navbar />
-      <MainContent>
-        <Sidebar />
-        <ContentArea>
-          <Outlet />
-        </ContentArea>
-        <RightSidebar />
-      </MainContent>
-      <TanStackRouterDevtools />
-    </AppContainer>
-  </BuilderProvider>
-);
+const RootLayout = () => {
+  const location = useLocation();
+  const isPreview = location.pathname === '/preview';
+
+  if (isPreview) {
+    return (
+      <BuilderProvider>
+        <Outlet />
+      </BuilderProvider>
+    );
+  }
+
+  return (
+    <BuilderProvider>
+      <AppContainer>
+        <Navbar />
+        <MainContent>
+          <Sidebar />
+          <ContentArea>
+            <Outlet />
+          </ContentArea>
+          <RightSidebar />
+        </MainContent>
+        <TanStackRouterDevtools />
+      </AppContainer>
+    </BuilderProvider>
+  );
+};
 
 export const Route = createRootRoute({ component: RootLayout });
